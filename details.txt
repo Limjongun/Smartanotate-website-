@@ -1,0 +1,667 @@
+=========================================================
+SMARTANNOTATE AI
+Active Learning Auto Annotation Platform
+=========================================================
+
+DESKRIPSI
+---------------------------------------------------------
+SmartAnnotate AI adalah platform anotasi berbasis AI yang
+memungkinkan pengguna hanya melakukan anotasi awal pada
+5-10 gambar, kemudian sistem secara otomatis melakukan
+segmentasi, object detection, dan auto-labeling terhadap
+gambar lainnya menggunakan model YOLO yang terus dilatih
+secara bertahap (incremental training).
+
+Platform menerapkan Human-in-the-Loop Active Learning
+sehingga setiap koreksi pengguna akan menjadi data baru
+untuk meningkatkan akurasi model secara berkelanjutan.
+
+=========================================================
+MASALAH YANG DISELESAIKAN
+=========================================================
+
+- Proses anotasi dataset sangat lama
+- Membutuhkan banyak tenaga annotator
+- Training model memerlukan ribuan label
+- Banyak pekerjaan repetitif
+- Sulit mengelola dataset besar
+
+=========================================================
+SOLUSI
+=========================================================
+
+1. User anotasi 5-10 gambar pertama
+2. YOLO melakukan training awal
+3. AI menghasilkan anotasi otomatis
+4. User hanya review dan koreksi
+5. Sistem retraining otomatis
+6. Model semakin akurat
+7. Dataset selesai jauh lebih cepat
+
+=========================================================
+TARGET PENGGUNA
+=========================================================
+
+Computer Vision Engineer
+Machine Learning Engineer
+Data Scientist
+Researcher
+Mahasiswa
+Perusahaan AI
+Startup Computer Vision
+Industri Manufaktur
+Industri Retail
+Smart City
+Autonomous Vehicle
+Drone Mapping
+Medical Imaging
+
+=========================================================
+FITUR UTAMA
+=========================================================
+
+DATASET MANAGEMENT
+---------------------------------------------------------
+
+✓ Create Project
+✓ Dataset Versioning
+✓ Dataset Split
+✓ Dataset Merge
+✓ Dataset Clone
+✓ Dataset Backup
+✓ Dataset Export
+✓ Dataset Import
+✓ Dataset Statistics
+✓ Dataset Analytics
+
+ANNOTATION TOOL
+---------------------------------------------------------
+
+✓ Bounding Box
+✓ Polygon
+✓ Segmentation Mask
+✓ Semantic Segmentation
+✓ Instance Segmentation
+✓ Keypoint Annotation
+✓ Rotated Bounding Box
+✓ 3D Bounding Box (Future)
+✓ Brush Tool
+✓ Eraser Tool
+✓ Magic Wand Selection
+✓ Auto Polygon Refinement
+
+AUTO ANNOTATION
+---------------------------------------------------------
+
+✓ YOLO Auto Labeling
+✓ Auto Segmentation
+✓ Auto Detection
+✓ Auto Tracking Video
+✓ Batch Prediction
+✓ Smart Label Suggestion
+✓ Confidence Filtering
+✓ Class Prediction
+✓ Auto Polygon Generation
+
+ACTIVE LEARNING
+---------------------------------------------------------
+
+✓ Human In The Loop
+✓ Uncertainty Sampling
+✓ Diversity Sampling
+✓ Hard Example Mining
+✓ Error Discovery
+✓ Smart Sample Selection
+✓ Confidence Ranking
+✓ Automatic Retraining
+
+MODEL TRAINING
+---------------------------------------------------------
+
+✓ YOLOv8
+✓ YOLOv9
+✓ YOLOv10
+✓ YOLO11
+✓ RT-DETR
+✓ EfficientDet
+✓ Faster R-CNN
+✓ Mask R-CNN
+✓ Segment Anything Integration
+✓ Incremental Training
+
+COLLABORATION
+---------------------------------------------------------
+
+✓ Multi User
+✓ Team Workspace
+✓ Role Management
+✓ Reviewer Workflow
+✓ Annotation Approval
+✓ Audit Trail
+✓ Comment System
+✓ Annotation History
+
+QUALITY CONTROL
+---------------------------------------------------------
+
+✓ QA Dashboard
+✓ Annotation Validation
+✓ Duplicate Detection
+✓ Missing Label Detection
+✓ Class Imbalance Detection
+✓ Outlier Detection
+✓ Data Drift Monitoring
+
+=========================================================
+SUPPORTED DATA TYPES
+=========================================================
+
+IMAGE
+---------------------------------------------------------
+
+jpg
+jpeg
+png
+bmp
+webp
+tiff
+tif
+
+VIDEO
+---------------------------------------------------------
+
+mp4
+avi
+mov
+mkv
+webm
+
+=========================================================
+SUPPORTED ANNOTATION FORMATS
+=========================================================
+
+YOLO Detection
+
+YOLO Segmentation
+
+YOLO OBB
+
+COCO Detection
+
+COCO Segmentation
+
+COCO Keypoints
+
+Pascal VOC XML
+
+LabelMe JSON
+
+CVAT XML
+
+Supervisely JSON
+
+Roboflow Format
+
+Custom JSON
+
+Custom TXT
+
+=========================================================
+FILE NAMING SYSTEM
+=========================================================
+
+Nama file anotasi selalu mengikuti nama file gambar.
+
+Contoh:
+
+images/
+├── mobil_001.jpg
+├── mobil_002.jpg
+├── mobil_003.jpg
+
+labels/
+├── mobil_001.txt
+├── mobil_002.txt
+├── mobil_003.txt
+
+Atau COCO:
+
+images/
+├── mobil_001.jpg
+├── mobil_002.jpg
+
+annotations/
+├── mobil_001.json
+├── mobil_002.json
+
+Atau Segmentation:
+
+images/
+├── drone_001.png
+
+masks/
+├── drone_001.png
+
+Dengan demikian setiap file anotasi memiliki nama yang
+identik dengan gambar sumber.
+
+=========================================================
+AUTO FORMAT CONVERTER
+=========================================================
+
+YOLO → COCO
+
+COCO → YOLO
+
+VOC → YOLO
+
+YOLO → VOC
+
+LabelMe → YOLO
+
+CVAT → YOLO
+
+Supervisely → YOLO
+
+Segmentation → Detection
+
+Detection → Segmentation
+
+=========================================================
+ALUR KERJA SISTEM
+=========================================================
+
+STEP 1
+---------------------------------------------------------
+
+User membuat project baru
+
+STEP 2
+---------------------------------------------------------
+
+Upload dataset
+
+STEP 3
+---------------------------------------------------------
+
+Annotasi 5-10 gambar
+
+STEP 4
+---------------------------------------------------------
+
+Quick Training YOLO
+
+STEP 5
+---------------------------------------------------------
+
+Model melakukan inferensi
+ke seluruh dataset
+
+STEP 6
+---------------------------------------------------------
+
+Confidence > 90%
+
+Auto Approve
+
+Confidence 70%-90%
+
+Review Required
+
+Confidence < 70%
+
+Manual Annotation
+
+STEP 7
+---------------------------------------------------------
+
+User memperbaiki hasil AI
+
+STEP 8
+---------------------------------------------------------
+
+Retraining otomatis
+
+STEP 9
+---------------------------------------------------------
+
+Model semakin akurat
+
+STEP 10
+---------------------------------------------------------
+
+Dataset selesai
+
+=========================================================
+ACTIVE LEARNING PIPELINE
+=========================================================
+
+Labeled Images
+      ↓
+YOLO Training
+      ↓
+Prediction
+      ↓
+Confidence Analysis
+      ↓
+Sample Ranking
+      ↓
+Human Review
+      ↓
+Correction
+      ↓
+Dataset Update
+      ↓
+Incremental Training
+      ↓
+Better Model
+      ↓
+Repeat
+
+=========================================================
+SYSTEM ARCHITECTURE
+=========================================================
+
+CLIENT
+---------------------------------------------------------
+
+Web Browser
+Mobile Browser
+Desktop App
+
+        ↓
+
+FRONTEND
+---------------------------------------------------------
+
+Next.js
+React
+TypeScript
+TailwindCSS
+Shadcn UI
+Konva.js
+React Query
+
+        ↓
+
+API GATEWAY
+---------------------------------------------------------
+
+FastAPI
+
+        ↓
+
+SERVICES
+---------------------------------------------------------
+
+Auth Service
+
+Project Service
+
+Dataset Service
+
+Annotation Service
+
+Training Service
+
+Prediction Service
+
+Export Service
+
+Notification Service
+
+Analytics Service
+
+        ↓
+
+MESSAGE QUEUE
+---------------------------------------------------------
+
+Redis
+
+Celery
+
+RabbitMQ (Optional)
+
+        ↓
+
+AI ENGINE
+---------------------------------------------------------
+
+YOLO11
+
+YOLO Segmentation
+
+SAM2
+
+OpenCV
+
+PyTorch
+
+ONNX Runtime
+
+TensorRT
+
+        ↓
+
+DATABASE
+---------------------------------------------------------
+
+PostgreSQL
+
+        ↓
+
+CACHE
+---------------------------------------------------------
+
+Redis
+
+        ↓
+
+STORAGE
+---------------------------------------------------------
+
+MinIO
+
+AWS S3
+
+Cloudflare R2
+
+=========================================================
+DATABASE DESIGN
+=========================================================
+
+users
+
+projects
+
+datasets
+
+images
+
+annotations
+
+annotation_versions
+
+training_jobs
+
+predictions
+
+models
+
+model_versions
+
+reviews
+
+comments
+
+activity_logs
+
+notifications
+
+=========================================================
+MODEL MANAGEMENT
+=========================================================
+
+Model Registry
+
+Model Versioning
+
+Rollback Model
+
+Model Comparison
+
+Training History
+
+Evaluation Metrics
+
+Experiment Tracking
+
+=========================================================
+MLOPS
+=========================================================
+
+MLflow
+
+Weights & Biases
+
+DVC
+
+Docker
+
+Kubernetes
+
+GitHub Actions
+
+=========================================================
+API MODULES
+=========================================================
+
+/auth
+
+/projects
+
+/datasets
+
+/images
+
+/annotations
+
+/train
+
+/predict
+
+/review
+
+/export
+
+/import
+
+/models
+
+/analytics
+
+=========================================================
+ANALYTICS DASHBOARD
+=========================================================
+
+Total Images
+
+Annotated Images
+
+Remaining Images
+
+Model Accuracy
+
+Precision
+
+Recall
+
+mAP50
+
+mAP50-95
+
+Class Distribution
+
+Review Statistics
+
+Training Statistics
+
+Dataset Growth
+
+=========================================================
+PREMIUM AI FEATURES
+=========================================================
+
+Automatic Class Discovery
+
+Zero Shot Detection
+
+Open Vocabulary Detection
+
+Auto Caption Generation
+
+AI Dataset Cleaning
+
+Synthetic Dataset Generator
+
+Synthetic Object Injection
+
+Automatic Data Augmentation
+
+Automatic Hyperparameter Search
+
+AutoML Training
+
+Foundation Model Integration
+
+=========================================================
+FUTURE ROADMAP
+=========================================================
+
+SAM 2 Integration
+
+Grounding DINO
+
+Florence-2
+
+RT-DETR
+
+Video Object Tracking
+
+3D Annotation
+
+LiDAR Annotation
+
+Medical DICOM Annotation
+
+Satellite Annotation
+
+Edge Training
+
+Federated Learning
+
+Enterprise Workspace
+
+=========================================================
+VALUE PROPOSITION
+=========================================================
+
+5-10 gambar awal → AI mulai bekerja
+
+70-95% pengurangan waktu anotasi
+
+Human-in-the-loop untuk menjaga kualitas
+
+Mendukung YOLO, COCO, VOC, LabelMe, CVAT
+
+Konversi format otomatis
+
+Retraining otomatis
+
+Skalabel untuk dataset kecil hingga jutaan gambar
+
+Platform end-to-end untuk annotation,
+training, active learning, dan dataset management
+dalam satu sistem.
+=========================================================
