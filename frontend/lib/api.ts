@@ -57,6 +57,22 @@ export const projectsApi = {
     request<{id: string, classes: string[]}>(`/projects/${id}/classes`, { method: "PATCH", body: JSON.stringify({ classes }) }),
   delete: (id: string) =>
     request<void>(`/projects/${id}`, { method: "DELETE" }),
+  downloadZip: async (id: string, projectName: string) => {
+    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    const res = await fetch(`${API_BASE}/projects/${id}/download-zip`, {
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+    });
+    if (!res.ok) throw new Error("Failed to download zip");
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${projectName.replace(/ /g, "_").toLowerCase()}_project_ready.zip`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  },
 };
 
 // ─── DATASETS / IMAGES ───────────────────────────────────────────────────────
@@ -197,9 +213,10 @@ export interface Annotation {
   image_id: string;
   class_name: string;
   class_id: number;
-  type: "bbox" | "polygon" | "segmentation";
+  type: "bbox" | "polygon" | "segmentation" | "pose";
   bbox?: { x: number; y: number; w: number; h: number };
   polygon?: { x: number; y: number }[];
+  keypoints?: { id: number; name: string; x: number; y: number; visible: boolean }[];
   confidence?: number;
   source: "manual" | "auto" | "reviewed";
   created_at: string;
@@ -208,9 +225,10 @@ export interface Annotation {
 export interface AnnotationInput {
   class_name: string;
   class_id: number;
-  type: "bbox" | "polygon" | "segmentation";
+  type: "bbox" | "polygon" | "segmentation" | "pose";
   bbox?: { x: number; y: number; w: number; h: number };
   polygon?: { x: number; y: number }[];
+  keypoints?: { id: number; name: string; x: number; y: number; visible: boolean }[];
   confidence?: number;
   source: "manual" | "auto" | "reviewed";
 }

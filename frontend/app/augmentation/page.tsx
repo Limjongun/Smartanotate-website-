@@ -7,7 +7,7 @@ import { useDropzone } from "react-dropzone";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
-type EffectType = "none" | "grayscale" | "blur" | "saturation" | "flip" | "noise" | "watermark";
+type EffectType = "none" | "grayscale" | "blur" | "saturation" | "flip" | "noise" | "watermark" | "brightness" | "contrast" | "invert" | "sepia" | "rotate";
 
 interface UploadedImage {
   id: string;
@@ -24,6 +24,11 @@ const EFFECTS: { id: EffectType; label: string; icon: string }[] = [
   { id: "noise", label: "Noise", icon: "🌫️" },
   { id: "watermark", label: "Watermark", icon: "©️" },
   { id: "saturation", label: "Saturation", icon: "🌈" },
+  { id: "brightness", label: "Brightness", icon: "☀️" },
+  { id: "contrast", label: "Contrast", icon: "🌗" },
+  { id: "invert", label: "Invert", icon: "🔄" },
+  { id: "sepia", label: "Sepia", icon: "🎞️" },
+  { id: "rotate", label: "Rotate", icon: "↻" },
 ];
 
 export default function AugmentationPage() {
@@ -62,6 +67,14 @@ export default function AugmentationPage() {
           ctx.filter = `blur(${(val / 100) * 10}px)`;
         } else if (eff === "saturation") {
           ctx.filter = `saturate(${val * 3}%)`;
+        } else if (eff === "brightness") {
+          ctx.filter = `brightness(${val * 2}%)`; 
+        } else if (eff === "contrast") {
+          ctx.filter = `contrast(${val * 3}%)`; 
+        } else if (eff === "invert") {
+          ctx.filter = `invert(${val}%)`;
+        } else if (eff === "sepia") {
+          ctx.filter = `sepia(${val}%)`;
         } else {
           ctx.filter = "none";
         }
@@ -70,6 +83,11 @@ export default function AugmentationPage() {
         if (eff === "flip") {
           ctx.translate(canvas.width, 0);
           ctx.scale(-1, 1);
+        } else if (eff === "rotate") {
+          const deg = (val / 100) * 360; 
+          ctx.translate(canvas.width / 2, canvas.height / 2);
+          ctx.rotate((deg * Math.PI) / 180);
+          ctx.translate(-canvas.width / 2, -canvas.height / 2);
         }
 
         ctx.drawImage(img, 0, 0);

@@ -141,8 +141,18 @@ export default function ProjectDetailPage() {
       ]}
       topbarActions={
         <div style={{ display: "flex", gap: 8 }}>
-          <button className="btn-ghost" style={{ fontSize: 12 }}>
-            <Download size={14} /> Export
+          <button 
+            className="btn-primary" 
+            style={{ fontSize: 12, background: "linear-gradient(135deg, #10b981, #3b82f6)", border: "none" }}
+            onClick={async () => {
+              try {
+                await projectsApi.downloadZip(project.id, project.name);
+              } catch (err) {
+                alert("Failed to download project zip");
+              }
+            }}
+          >
+            <Download size={14} /> Ready-to-Train ZIP
           </button>
           <button className="btn-ghost" style={{ fontSize: 12 }}>
             <Settings size={14} /> Settings

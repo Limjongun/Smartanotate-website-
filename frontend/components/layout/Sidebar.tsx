@@ -18,6 +18,7 @@ import {
   Bot,
   Cpu,
   BookOpen,
+  PersonStanding,
 } from "lucide-react";
 
 const navItems = [
@@ -27,6 +28,7 @@ const navItems = [
   { href: "/augmentation",   label: "Augmentation",    icon: Images          },
   { href: "/annotate",       label: "Annotate",        icon: Pencil          },
   { href: "/segment-annotate",label: "Segment Annotate", icon: Pencil          },
+  { href: "/pose-annotate",  label: "Pose Annotate",   icon: PersonStanding  },
   { href: "/auto-annotation",label: "Auto Annotation", icon: Bot             },
   { href: "/guidelines",     label: "Guidelines",      icon: BookOpen        },
   { href: "/analytics",      label: "Analytics",       icon: BarChart2       },

@@ -8,7 +8,8 @@ import {
   MousePointer2, Square, Pentagon, Brush, Eraser, Wand2,
   Move, Undo2, Redo2, Save, Download, Eye, EyeOff,
   Plus, Trash2, MoreVertical, CheckCircle, Zap, SkipForward,
-  Layers, SlidersHorizontal, Loader2, FileText, X, FileJson, PenTool
+  Layers, SlidersHorizontal, Loader2, FileText, X, FileJson, PenTool,
+  Pencil, PersonStanding
 } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { imagesApi, annotationsApi, projectsApi, Annotation, ImageItem } from "@/lib/api";
@@ -958,6 +959,17 @@ export default function AnnotatePage() {
           </button>
         </div>
 
+        <Link href={`/annotate/${currentImage.id}`} style={{ textDecoration: "none", marginRight: 8 }}>
+          <button className="btn-secondary" style={{ fontSize: 12, padding: "6px 16px", display: "flex", gap: 6, alignItems: "center" }}>
+            <Pencil size={13} /> Bbox
+          </button>
+        </Link>
+        <Link href={`/pose-annotate/${currentImage.id}`} style={{ textDecoration: "none", marginRight: 8 }}>
+          <button className="btn-secondary" style={{ fontSize: 12, padding: "6px 16px", display: "flex", gap: 6, alignItems: "center" }}>
+            <PersonStanding size={13} /> Pose
+          </button>
+        </Link>
+
         <button
           className="btn-primary"
           style={{ fontSize: 12, padding: "6px 16px" }}
@@ -1066,7 +1078,7 @@ export default function AnnotatePage() {
             borderLeft: "1px solid var(--color-border)",
             display: "flex",
             flexDirection: "column",
-            overflow: "hidden",
+            overflowY: "auto",
           }}
         >
           {/* Objects */}
