@@ -1,66 +1,58 @@
-# SmartAnnotate AI 🚀
+# SmartAnnotate AI
 
-**Platform Anotasi Otomatis Berbasis Active Learning & Human-in-the-Loop**
-
----
-
-Apakah Anda pernah merasa frustrasi menghabiskan waktu berjam-jam, berhari-hari, atau bahkan berminggu-minggu hanya untuk memberikan label pada dataset gambar? Proses anotasi manual yang repetitif tidak hanya menguras tenaga, tetapi juga memperlambat laju inovasi dalam pengembangan model kecerdasan buatan Anda.
-
-**SmartAnnotate AI** hadir untuk mendobrak batasan tersebut. Kami percaya bahwa waktu Anda sebagai *Engineer*, *Researcher*, maupun *Data Scientist* terlalu berharga untuk dihabiskan pada pekerjaan manual. Dengan pendekatan **Human-in-the-Loop Active Learning**, platform kami memungkinkan Anda untuk hanya menganotasi 5 hingga 10 gambar pertama saja. Selanjutnya, biarkan AI kami yang mengambil alih—melakukan segmentasi, deteksi objek, dan pelabelan otomatis pada sisa dataset Anda menggunakan model mutakhir yang terus belajar dan beradaptasi.
-
-Setiap sentuhan dan koreksi yang Anda berikan akan membuat model ini semakin cerdas (*incremental training*), mengurangi waktu anotasi hingga 95% tanpa mengorbankan akurasi.
+**Platform Anotasi Berbasis Active Learning dan Human-in-the-Loop**
 
 ---
 
-## 🌟 Nilai Utama yang Kami Tawarkan
-- **Efisiensi Waktu Ekstrim**: Label 5-10 gambar, AI menyelesaikan sisanya.
-- **Human-in-the-Loop**: Gabungan sempurna antara kecepatan AI dan kejelian akurasi manusia. 
-- **Otomatisasi Penuh**: Konversi format, *retraining* model, dan *confidence filtering* yang berjalan secara otomatis di belakang layar.
-- **Skalabilitas**: Dirancang untuk menangani dataset dari puluhan hingga jutaan gambar dengan dukungan kolaborasi *Multi-User*.
+SmartAnnotate AI merupakan platform anotasi dataset yang didesain untuk mempercepat proses pelabelan data dalam pengembangan model *Computer Vision*. Melalui pendekatan **Human-in-the-Loop Active Learning**, pengguna hanya perlu memberikan anotasi manual pada sampel awal (5 hingga 10 citra). Selanjutnya, sistem akan mengambil alih proses anotasi melalui mekanisme pelabelan otomatis menggunakan model pra-latih yang ditingkatkan secara bertahap (*incremental training*).
 
-## 🛠 Fitur Teknis Utama
+Sistem ini meminimalkan pekerjaan repetitif dalam pengumpulan dan penyusunan dataset, meningkatkan efisiensi waktu pemrosesan, dan memfasilitasi manajemen dataset dalam skala besar.
+
+---
+
+## Spesifikasi dan Kemampuan Sistem
+
+- **Otomatisasi Berbasis Active Learning**: Reduksi waktu pelabelan manual dengan otomatisasi menggunakan model deteksi dan segmentasi (YOLO, RT-DETR).
+- **Mekanisme Human-in-the-Loop**: Integrasi validasi manual (*Human Review*) pada data dengan *confidence score* rendah untuk menjaga akurasi anotasi secara presisi.
+- **Konversi Format Dinamis**: Dukungan transformasi dan konversi dua arah antar-format dataset standar industri (*YOLO, COCO, Pascal VOC, LabelMe, CVAT, Supervisely*).
+- **Skalabilitas & Multi-User**: Arsitektur sistem mendukung pemrosesan data berskala besar, dilengkapi dengan manajemen hak akses dan ruang kerja kolaboratif (*Team Workspace*).
+
+## Arsitektur Teknis
 
 ### 1. Auto Annotation & Active Learning Pipeline
-Sistem ini menggunakan alur *Active Learning* di mana model terus-menerus dilatih berdasarkan umpan balik (*feedback*) Anda:
-- **Auto Labeling & Segmentation** (Mendukung YOLOv8, YOLOv9, YOLOv10, YOLO11, RT-DETR).
-- **Confidence Filtering**: 
+- **Auto Labeling & Segmentation**: Terintegrasi dengan arsitektur model seperti keluarga YOLO (YOLOv8, YOLOv9, YOLOv10, YOLO11) dan RT-DETR.
+- **Confidence Filtering Logic**: 
   - `> 90%`: *Auto Approve*
   - `70% - 90%`: *Review Required*
   - `< 70%`: *Manual Annotation*
-- **Smart Sample Selection**: *Uncertainty Sampling*, *Diversity Sampling*, dan *Hard Example Mining*.
+- **Smart Sample Selection**: Menggunakan metode iteratif seperti *Uncertainty Sampling*, *Diversity Sampling*, dan *Hard Example Mining*.
 
 ### 2. Annotation & Dataset Management
-- **Alat Lengkap**: Bounding Box, Polygon, Segmentation Mask, Keypoints, Brush/Eraser Tool, hingga Magic Wand.
-- **Manajemen Proyek**: Versioning, Splitting, Merging, Export/Import, dan kolaborasi tim (Reviewer Workflow, Audit Trail).
-- **Auto Format Converter**: Mendukung konversi dua arah secara instan antara YOLO, COCO, Pascal VOC, LabelMe, CVAT, Supervisely, dll.
+- **Fitur Anotasi**: Bounding Box, Polygon, Segmentation Mask, Keypoints, Brush/Eraser Tool, dan Magic Wand Selection.
+- **Dataset Operations**: Mendukung operasional tingkat lanjut seperti Dataset Versioning, Splitting, Merging, Import/Export, serta Audit Trail (*Reviewer Workflow*).
 
-### 3. Arsitektur Sistem (Modern Stack)
-SmartAnnotate dibangun dengan arsitektur modern standar industri yang *scalable*:
-- **Frontend**: Next.js, React, TypeScript, TailwindCSS, Shadcn UI, Konva.js (Canvas Rendering).
-- **Backend & API**: FastAPI (Python), PostgreSQL, Redis, Celery (Message Queue).
+### 3. Tech Stack (Stack Teknologi)
+- **Frontend**: Next.js, React, TypeScript, TailwindCSS, Shadcn UI, Konva.js (*Canvas Rendering*).
+- **Backend & API Gateway**: FastAPI (Python), PostgreSQL, Redis, Celery (sebagai *Message Queue* dan *Background Task Handler*).
 - **AI Engine**: YOLO11, SAM 2, OpenCV, PyTorch, ONNX Runtime, TensorRT.
-- **Storage & MLOps**: MinIO / AWS S3, MLflow, Docker, Kubernetes.
+- **Infrastruktur & MLOps**: MinIO / AWS S3, MLflow, Docker, Kubernetes.
 
 ---
 
-## 🚀 Alur Kerja Sistem (Workflow)
+## Alur Kerja Sistem (System Workflow)
 
-1. **Inisiasi Proyek**: Buat proyek dan unggah dataset gambar atau video Anda.
-2. **Anotasi Awal**: Berikan label secara manual pada **5-10** sampel gambar pertama.
-3. **Quick Training**: Sistem akan melakukan iterasi *training* awal secara otomatis.
-4. **Mass Inference**: AI melakukan inferensi dan memberikan pra-label pada seluruh dataset Anda.
-5. **Quality Control (Human Review)**: Sistem mengurutkan data berdasarkan skor *confidence*. Anda hanya perlu mereviu atau mengoreksi gambar dengan tingkat keyakinan rendah.
-6. **Incremental Retraining**: Sistem secara otomatis melakukan *retraining* untuk meningkatkan akurasi berdasarkan koreksi yang Anda buat.
-7. **Selesai**: Dataset berkualitas tinggi siap diekspor dalam berbagai format tanpa harus menghabiskan waktu berbulan-bulan.
-
----
-
-## 📈 Roadmap Masa Depan
-Kami berkomitmen untuk terus membawa teknologi *Computer Vision* terbaru langsung ke ujung jari Anda:
-- Integrasi penuh **SAM 2** & **Grounding DINO** untuk kemampuan *Zero-Shot Detection*.
-- *Video Object Tracking* dan Anotasi 3D/LiDAR.
-- *Federated Learning* dan *Edge Training* untuk perlindungan privasi data maksimal.
+1. **Inisialisasi**: Pembuatan *project workspace* dan pengunggahan dataset (citra atau video) mentah.
+2. **Anotasi Awal**: Pelabelan sampel dasar sebanyak 5-10 gambar secara manual.
+3. **Training Iterasi Pertama**: Sistem menjalankan pelatihan awal (*Quick Training*) menggunakan sampel dasar.
+4. **Mass Inference**: Inferensi secara massal (*batch prediction*) terhadap seluruh sisa dataset yang belum berlabel.
+5. **Quality Assurance (Human Review)**: Sortasi data berdasarkan metrik probabilitas (*confidence score*). Pengguna memberikan perbaikan (*correction*) hanya pada anotasi dengan skor rendah.
+6. **Incremental Retraining**: Pelatihan ulang model secara otomatis untuk menginkorporasikan koreksi dari pengguna.
+7. **Ekspor Data**: Dataset berlabel dikonversi dan diekspor sesuai format tujuan (*target format*).
 
 ---
 
-*Mari wujudkan efisiensi pengembangan AI, dan kembalikan waktu Anda untuk berfokus pada inovasi yang sesungguhnya.*
+## Pengembangan Lanjutan (Roadmap)
+
+- Integrasi penuh **SAM 2** dan **Grounding DINO** untuk anotasi berbasis *Zero-Shot Detection*.
+- Implementasi algoritma *Video Object Tracking*, anotasi 3D, serta integrasi LiDAR.
+- Pengembangan kapabilitas sistem menuju *Federated Learning* dan *Edge Training* untuk pemenuhan kepatuhan privasi data (*Data Privacy Compliance*).
